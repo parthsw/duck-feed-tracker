@@ -1,0 +1,8 @@
+@import "base/typography";
+
+.container {
+  background-color: hsl(0, 0%, 98%);
+  text-align: center;
+  padding: 1em;
+  font-family: $font-roboto-regular;
+}
