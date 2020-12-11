@@ -1,23 +1,23 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
+**/dist
+**/tmp
+**/out-tsc
 # Only exists if Bazel was run
 /bazel-out
 
 # Dependencies
-/node_modules
+**/node_modules
 
 # Cordova
-/www
-/plugins
-/platforms
+**/www
+**/plugins
+**/platforms
 
 # Electron
-/dist.electron
-/electron.main.js
+**/dist.electron
+**/electron.main.js
 
 # IDEs and editors
 .idea/*
@@ -39,22 +39,22 @@ xcuserdata/
 !.vscode/extensions.json
 
 # Maven
-/target
-/log
+**/target
+**/log
 
 # Misc
-/.sass-cache
-/connect.lock
-/coverage
-/libpeerconnection.log
-npm-debug.log
-yarn-error.log
-testem.log
-/typings
-/reports
-/src/translations/template.*
-/src/environments/.env.*
+**/.sass-cache
+**/connect.lock
+**/coverage
+**/libpeerconnection.log
+**/npm-debug.log
+**/yarn-error.log
+**/testem.log
+**/typings
+**/reports
+**/src/translations/template.*
+**/src/environments/.env.*
 
 # System Files
-.DS_Store
-Thumbs.db
+**/.DS_Store
+**/Thumbs.db
