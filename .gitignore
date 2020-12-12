@@ -58,3 +58,5 @@ xcuserdata/
 # System Files
 **/.DS_Store
 **/Thumbs.db
+
+sqltools_**.log
