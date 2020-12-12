@@ -19,14 +19,14 @@ CREATE TABLE duck_feed_dataset
 (
     id                  INT             AUTO_INCREMENT PRIMARY KEY,
     food_type_id        INT             NOT NULL,
-    food_description    VARCHAR(100)    NULL,
+    food_description    VARCHAR(100)    NOT NULL,
     food_qty_gms        INT             NOT NULL,
     no_of_ducks         INT             NOT NULL,
     country_id          VARCHAR(2)      NOT NULL,
-    feed_time           TIME            NOT NULL,
+    feed_time           TIME(0)         NOT NULL,
     feed_date           DATE            NOT NULL,
-    park_location       VARCHAR(45)     NULL,
-    is_repetitive       TINYINT         NULL,
+    park_location       VARCHAR(45)     NOT NULL,
+    is_repetitive       TINYINT         NOT NULL,
     participant_name    VARCHAR(45)     NULL,
     participant_email   VARCHAR(320)    NULL,
     CONSTRAINT country_fk 
