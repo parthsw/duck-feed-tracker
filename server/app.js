@@ -1,7 +1,7 @@
 // shortening require paths
 require('app-module-path').addPath(__dirname);
 
-const server = require('config/server');
+const server = require('src/shared/server');
 
 const PORT = process.env.PORT || 80;
 server.listen(PORT, () => {

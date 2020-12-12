@@ -60,3 +60,5 @@ xcuserdata/
 **/Thumbs.db
 
 sqltools_**.log
+
+server/src/.env
