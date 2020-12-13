@@ -1,0 +1,33 @@
+@import "base/typography";
+
+:host {
+  width: 100%;
+}
+section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.form-title {
+  font-weight: 900;
+  font-family: $font-roboto-medium;
+}
+.form-title,
+mat-form-field,
+button {
+  width: 80%;
+}
+mat-divider {
+  margin: 2% 0;
+}
+.duck-feed-form {
+  margin-bottom: 5%;
+  button {
+    color: #ffffff;
+    font-weight: 900;
+  }
+  button.mat-button-disabled {
+    opacity: 0.8;
+    background-color: #f68e6b;
+  }
+}

@@ -1,8 +1,17 @@
 @import "base/typography";
 
 .container {
-  background-color: hsl(0, 0%, 98%);
+  background-color: #f8f8f8;
   text-align: center;
   padding: 1em;
   font-family: $font-roboto-regular;
+  display: flex;
+  picture,
+  app-duck-feed-form {
+    flex: 1;
+  }
+}
+img {
+  width: 100%;
+  object-fit: cover;
 }
