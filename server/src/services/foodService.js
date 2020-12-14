@@ -15,6 +15,7 @@ class FoodService {
     try {
       let foodTypes = await this.database.query(this.getAllFoodTypes);
       let formattedFoodTypes = foodFormatter.formatFoodTypes(foodTypes);
+      console.log(`Returning ${formattedFoodTypes.length} records...`);
       return {
         success: true,
         statusCode: 200,

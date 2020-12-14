@@ -6,7 +6,6 @@
 
 const express = require('express');
 const router = express.Router();
-const { validate } = require('express-validation');
 
 const Database = require('src/shared/database');
 const DuckFeedService = require('src/services/duckFeedService');
@@ -16,11 +15,7 @@ const config = require('src/config/index');
 const database = new Database(config.database);
 const duckFeedService = new DuckFeedService(database);
 const duckFeedController = new DuckFeedController(duckFeedService);
-const duckFeedSchema = require('src/helpers/validate/duckFeedSchema');
 
-router
-  .route(`/feed`)
-  .get(duckFeedController.getDuckFeeds)
-  .post(duckFeedController.createDuckFeed);
+router.route(`/feed`).get(duckFeedController.getDuckFeeds).post(duckFeedController.createDuckFeed);
 
 module.exports = router;

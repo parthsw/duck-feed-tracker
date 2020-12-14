@@ -5,41 +5,41 @@
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. By Country Name" #input />
   </mat-form-field>
   <table mat-table [dataSource]="duckFeedSource" matSort #duckFeedSort="matSort">
-    <ng-container matColumnDef="id">
+    <ng-container matColumnDef="duckFeedId">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
-      <td mat-cell *matCellDef="let row">{{ row.id }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.duckFeedId }}</td>
     </ng-container>
-    <ng-container matColumnDef="country_name">
+    <ng-container matColumnDef="countryName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Country</th>
-      <td mat-cell *matCellDef="let row">{{ row.country_name }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.countryName }}</td>
     </ng-container>
-    <ng-container matColumnDef="park_location">
+    <ng-container matColumnDef="parkLocation">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Park</th>
-      <td mat-cell *matCellDef="let row">{{ row.park_location }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.parkLocation }}</td>
     </ng-container>
-    <ng-container matColumnDef="food_type">
+    <ng-container matColumnDef="foodType">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Food Type</th>
-      <td mat-cell *matCellDef="let row">{{ row.food_type }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.foodType }}</td>
     </ng-container>
-    <ng-container matColumnDef="food_description">
+    <ng-container matColumnDef="foodDescription">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Food Description</th>
-      <td mat-cell *matCellDef="let row">{{ row.food_description }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.foodDescription }}</td>
     </ng-container>
-    <ng-container matColumnDef="food_qty_gms">
+    <ng-container matColumnDef="foodQtyGms">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Food Qty (gms)</th>
-      <td mat-cell *matCellDef="let row">{{ row.food_qty_gms }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.foodQtyGms }}</td>
     </ng-container>
-    <ng-container matColumnDef="no_of_ducks">
+    <ng-container matColumnDef="noOfDucks">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Number of Ducks</th>
-      <td mat-cell *matCellDef="let row">{{ row.no_of_ducks }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.noOfDucks }}</td>
     </ng-container>
-    <ng-container matColumnDef="feed_date">
+    <ng-container matColumnDef="feedDate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Feed Date</th>
-      <td mat-cell *matCellDef="let row">{{ row.feed_date | date: 'yyyy-MM-dd' }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.feedDate | date: 'yyyy-MM-dd' }}</td>
     </ng-container>
-    <ng-container matColumnDef="feed_time">
+    <ng-container matColumnDef="feedTime">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Feed Time</th>
-      <td mat-cell *matCellDef="let row">{{ row.feed_time }}</td>
+      <td mat-cell *matCellDef="let row">{{ row.feedTime }}</td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

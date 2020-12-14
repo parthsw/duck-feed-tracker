@@ -16,6 +16,7 @@ class CountryService {
     try {
       let countries = await this.database.query(this.getAllCountries);
       let formattedCountries = countryFormatter.formatCountries(countries);
+      console.log(`Returning ${formattedCountries.length} records...`);
       return {
         success: true,
         statusCode: 200,
