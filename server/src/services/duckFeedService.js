@@ -5,8 +5,8 @@ const mysql = require('mysql');
 const config = require('src/config/index');
 
 class DuckFeedService {
-  getAllDuckFeeds = `SELECT * FROM ${config.database.name}.DUCK_FEED_DATASET`;
-  duckFeed = `INSERT INTO ${config.database.name}.DUCK_FEED_DATASET(food_type_id, food_description, food_qty_gms, no_of_ducks, country_id, feed_time, feed_date, park_location, is_repetitive, participant_name, participant_email) VALUES(?,?,?,?,?,?,?,?,?,?,?)`;
+  getAllDuckFeeds = `SELECT * FROM ${config.database.name}.duck_feed_dataset`;
+  duckFeed = `INSERT INTO ${config.database.name}.duck_feed_dataset(food_type_id, food_description, food_qty_gms, no_of_ducks, country_id, feed_time, feed_date, park_location, is_repetitive, participant_name, participant_email) VALUES(?,?,?,?,?,?,?,?,?,?,?)`;
 
   constructor(database) {
     this.database = database;

@@ -4,7 +4,7 @@
 const config = require('src/config/index');
 const foodFormatter = require('src/helpers/formatters/foodFormatter');
 class FoodService {
-  getAllFoodTypes = `SELECT * FROM ${config.database.name}.DUCK_FOOD`;
+  getAllFoodTypes = `SELECT * FROM ${config.database.name}.duck_food`;
 
   constructor(database) {
     this.database = database;

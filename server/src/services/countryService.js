@@ -5,7 +5,7 @@ const config = require('src/config/index');
 const countryFormatter = require('src/helpers/formatters/countryFormatter');
 
 class CountryService {
-  getAllCountries = `SELECT * FROM ${config.database.name}.COUNTRY`;
+  getAllCountries = `SELECT * FROM ${config.database.name}.country`;
 
   constructor(database) {
     this.database = database;

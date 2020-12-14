@@ -9,11 +9,11 @@ if (envFound.error) {
 
 const configurables = {
   database: {
-    port: parseInt(process.env.DB_PORT),
-    url: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD,
-    name: process.env.DB_NAME,
+    port: 3306,
+    host: "duckfeed.cqwmzadqv6u2.us-east-1.rds.amazonaws.com",
+    user: "admin",
+    password: "Welcom3110",
+    name: "duck_feeding_tracker",
   },
   jwt: {
     secret: process.env.JWT_SECRET,
