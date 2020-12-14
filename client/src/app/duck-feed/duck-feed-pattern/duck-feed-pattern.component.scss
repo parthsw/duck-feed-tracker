@@ -1,0 +1,17 @@
+@import "abstract/placeholders";
+
+section {
+  @extend %vertically-center-orientation;
+}
+mat-form-field {
+  width: 50%;
+}
+table {
+  width: 100%;
+  tbody {
+    min-height: 50%;
+  }
+  .mat-cell {
+    text-align: left;
+  }
+}
