@@ -4,11 +4,11 @@
     find patterns in feeding habits of duck around the world!
   </div>
   <mat-divider></mat-divider>
-  <form class="duck-feed-form" [formGroup]="duckFeedForm" (ngSubmit)="onSubmit()">
+  <form class="duck-feed-form" [formGroup]="duckFeedForm" (ngSubmit)="submitDuckFeed()">
     <mat-form-field appearance="outline">
       <mat-label>Food Type</mat-label>
       <mat-select [formControl]="foodTypeId">
-        <mat-option></mat-option>
+        <mat-option *ngFor="let foodType of foodTypes" [value]="foodType.id">{{ foodType.type }}</mat-option>
       </mat-select>
       <mat-error *ngIf="foodTypeId.hasError('required')">Please select type of food!</mat-error>
     </mat-form-field>
@@ -27,7 +27,7 @@
       <mat-label>Food Quantity</mat-label>
       <input
         matInput
-        type="text"
+        type="number"
         placeholder="How much food the ducks were fed? (In gms)"
         [formControl]="foodQtyGms"
         autocomplete="off"
@@ -41,7 +41,13 @@
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>Number of Ducks</mat-label>
-      <input matInput type="text" placeholder="How many ducks were fed?" [formControl]="noOfDucks" autocomplete="off" />
+      <input
+        matInput
+        type="number"
+        placeholder="How many ducks were fed?"
+        [formControl]="noOfDucks"
+        autocomplete="off"
+      />
       <mat-error *ngIf="noOfDucks.hasError('required') && !noOfDucks.hasError('min')"
         >Please provide number of ducks fed!</mat-error
       >
@@ -52,7 +58,7 @@
     <mat-form-field appearance="outline">
       <mat-label>Country</mat-label>
       <mat-select [formControl]="countryId">
-        <mat-option></mat-option>
+        <mat-option *ngFor="let country of countries" [value]="country.id">{{ country.name }}</mat-option>
       </mat-select>
       <mat-error *ngIf="countryId.hasError('required')">Please select your country!</mat-error>
     </mat-form-field>
@@ -79,6 +85,8 @@
       />
       <mat-error *ngIf="feedTime.hasError('required')">Please provide feeding time!</mat-error>
     </mat-form-field>
+    <mat-divider></mat-divider>
+    <h4>VOLUNTARY INFORMATION</h4>
     <mat-form-field appearance="outline">
       <mat-label>Your Name</mat-label>
       <input matInput type="text" placeholder="Your name" [formControl]="participantName" autocomplete="off" />
@@ -88,7 +96,13 @@
       <input matInput type="email" placeholder="Your email" [formControl]="participantEmail" autocomplete="off" />
       <mat-error *ngIf="participantEmail.hasError('email')">Please enter valid email address!</mat-error>
     </mat-form-field>
-    <div>
+    <mat-divider></mat-divider>
+    <h5>
+      Are you a regular duck feeder? If you are, you may select this field and we will make a similar entry everyday on
+      behalf of you!
+    </h5>
+    <mat-checkbox [formControl]="isRepetitive" [checked]="false"> Yes, I am! </mat-checkbox>
+    <div class="form-button-holder">
       <button mat-button [disabled]="!duckFeedForm.valid" type="submit">Submit</button>
     </div>
   </form>

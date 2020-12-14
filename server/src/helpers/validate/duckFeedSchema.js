@@ -11,6 +11,8 @@ const createDuckFeedSchema = {
     feedDate: Joi.string().required(),
     parkLocation: Joi.string().required(),
     isRepetitive: Joi.boolean().required(),
+    participantName: Joi.string(),
+    participantEmail: Joi.string()
   }).options({ abortEarly: false }),
 };
 

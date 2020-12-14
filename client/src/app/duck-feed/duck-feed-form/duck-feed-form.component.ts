@@ -1,18 +1,35 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
-import { IDuckFeed } from '../IDuckFeed';
+import { untilDestroyed } from '@app/@core';
+import { CountryService } from '@core/services/country.service';
+import { FoodService } from '@core/services/food.service';
+import { DuckFeedService } from '@core/services/duck-feed.service';
+
+import { ApiResponseModel } from '@app/@core/models/api-response.model';
+import { DuckFeedModel } from '@app/@core/models/duck-feed.model';
+import { CountryModel } from '@core/models/country.model';
+import { FoodTypeModel } from '@core/models/food-type.model';
 
 @Component({
   selector: 'app-duck-feed-form',
   templateUrl: './duck-feed-form.component.html',
   styleUrls: ['./duck-feed-form.component.scss'],
 })
-export class DuckFeedFormComponent implements OnInit {
+export class DuckFeedFormComponent implements OnInit, OnDestroy {
   duckFeedForm: FormGroup;
-  duckFeed: IDuckFeed;
+  duckFeed: DuckFeedModel;
+  countries: CountryModel[];
+  foodTypes: FoodTypeModel[];
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private countryService: CountryService,
+    private foodService: FoodService,
+    private duckFeedService: DuckFeedService,
+    private router: Router
+  ) {
     this.createDuckFeedForm();
   }
 
@@ -60,23 +77,96 @@ export class DuckFeedFormComponent implements OnInit {
     return this.duckFeedForm.controls.participantEmail;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.resetDuckFeedForm();
+    this.getAllCountries();
+    this.getAllFoodTypes();
+  }
 
-  onSubmit() {}
+  ngOnDestroy() {}
 
-  createDuckFeedForm() {
+  submitDuckFeed() {
+    if (this.duckFeedForm.valid) {
+      this.transformFormToModel(this.duckFeedForm.value);
+      this.createDuckFeed(this.duckFeed);
+    }
+  }
+
+  private getAllCountries() {
+    this.countryService
+      .getAllCountries()
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (res: ApiResponseModel) => {
+          this.countries = res.items as CountryModel[];
+        },
+        (err) => {}
+      );
+  }
+
+  private getAllFoodTypes() {
+    this.foodService
+      .getAllFoodTypes()
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (res: ApiResponseModel) => {
+          this.foodTypes = res.items as FoodTypeModel[];
+        },
+        (err) => {}
+      );
+  }
+
+  private createDuckFeed(duckFeed: DuckFeedModel) {
+    this.duckFeedService
+      .createDuckFeed(duckFeed)
+      .pipe(untilDestroyed(this))
+      .subscribe(
+        (res) => {
+          console.log(res);
+          this.showThankYouScreen();
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
+  }
+
+  private createDuckFeedForm() {
     this.duckFeedForm = this.formBuilder.group({
-      foodTypeId: [0, Validators.required],
+      foodTypeId: ['', Validators.required],
       foodDescription: ['', Validators.required],
       foodQtyGms: ['', [Validators.required, Validators.min(1)]],
       noOfDucks: ['', [Validators.required, Validators.min(1)]],
       countryId: ['', Validators.required],
       feedTime: ['', Validators.required],
-      feedDate: ['', Validators.required],
+      feedDate: new FormControl(this.getCurrentDate()),
       parkLocation: ['', Validators.required],
-      isRepetitive: [false],
-      participantName: [''],
+      isRepetitive: new FormControl(false),
+      participantName: new FormControl(''),
       participantEmail: ['', Validators.email],
     });
+  }
+
+  private resetDuckFeedForm() {
+    this.duckFeedForm.reset();
+  }
+
+  private getCurrentDate() {
+    const todaysDate = new Date();
+    return `${todaysDate.getFullYear()}-${todaysDate.getMonth()}-${todaysDate.getDate()}`;
+  }
+
+  private transformFormToModel(value: any) {
+    this.duckFeed = value;
+    if (this.duckFeed.feedDate == null) {
+      this.duckFeed.feedDate = this.getCurrentDate();
+    }
+    if (this.duckFeed.isRepetitive == null) {
+      this.duckFeed.isRepetitive = false;
+    }
+  }
+
+  private showThankYouScreen() {
+    this.router.navigate(['/thank-you']);
   }
 }

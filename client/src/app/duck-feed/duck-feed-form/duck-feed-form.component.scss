@@ -1,33 +1,61 @@
 @import "base/typography";
+@import "base/colors";
+@import "abstract/placeholders";
 
 :host {
   width: 100%;
 }
 section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @extend %vertically-center-orientation;
+
+  padding-top: 2%;
 }
 .form-title {
   font-weight: 900;
   font-family: $font-roboto-medium;
 }
+.duck-feed-form {
+  .form-button-holder {
+    width: 100%;
+  }
+  mat-divider {
+    margin: auto;
+  }
+}
+
 .form-title,
 mat-form-field,
-button {
-  width: 80%;
+button,
+mat-divider,
+mat-checkbox {
+  width: 50%;
 }
-mat-divider {
+
+@media only screen and (max-width: 768px) {
+  .form-title,
+  mat-form-field,
+  button,
+  mat-divider,
+  mat-checkbox {
+    width: 80%;
+  }
+}
+
+mat-divider,
+.form-button-holder {
   margin: 2% 0;
 }
 .duck-feed-form {
   margin-bottom: 5%;
   button {
-    color: #ffffff;
+    color: $white;
     font-weight: 900;
+  }
+  button,
+  button.mat-button-disabled {
+    background-color: $app-button-color;
   }
   button.mat-button-disabled {
     opacity: 0.8;
-    background-color: #f68e6b;
   }
 }
