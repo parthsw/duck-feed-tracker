@@ -122,8 +122,9 @@ export class DuckFeedFormComponent implements OnInit, OnDestroy {
       .pipe(untilDestroyed(this))
       .subscribe(
         (res) => {
-          console.log(res);
-          this.showThankYouScreen();
+          if (res.success) {
+            this.showThankYouScreen();
+          }
         },
         (err) => {
           console.log(err);

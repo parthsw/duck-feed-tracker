@@ -20,15 +20,15 @@ export class DuckFeedPatternComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort, { static: true }) duckFeedSort: MatSort;
 
   displayedColumns: string[] = [
-    'id',
-    'country_name',
-    'park_location',
-    'food_type',
-    'food_description',
-    'food_qty_gms',
-    'no_of_ducks',
-    'feed_date',
-    'feed_time',
+    'duckFeedId',
+    'countryName',
+    'parkLocation',
+    'foodType',
+    'foodDescription',
+    'foodQtyGms',
+    'noOfDucks',
+    'feedDate',
+    'feedTime',
   ];
 
   constructor(private duckFeedService: DuckFeedService) {}
@@ -55,7 +55,6 @@ export class DuckFeedPatternComponent implements OnInit, OnDestroy {
       .subscribe(
         (res: ApiResponseModel) => {
           this.duckFeeds = res.items as DuckFeedModel[];
-          console.log(this.duckFeeds);
           this.initializeDuckFeedsGrid();
         },
         (err) => {}
