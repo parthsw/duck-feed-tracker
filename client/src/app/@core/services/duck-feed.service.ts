@@ -17,6 +17,10 @@ export class DuckFeedService {
     return this.httpClient.post<any>(this.getDuckFeedBaseUrl(), duckFeed);
   }
 
+  getDuckFeeds(): Observable<ApiResponseModel> {
+    return this.httpClient.get<ApiResponseModel>(this.getDuckFeedBaseUrl());
+  }
+
   private getDuckFeedBaseUrl() {
     return `${environment.serverUrl}duck/feed`;
   }
