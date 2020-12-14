@@ -1,4 +1,4 @@
-export interface IDuckFeed {
+export interface DuckFeedModel {
   duckFeedId: number;
   foodTypeId: number;
   foodDescription: string;
@@ -6,7 +6,7 @@ export interface IDuckFeed {
   noOfDucks: number;
   countryId: string;
   feedTime: string;
-  feedDate: Date;
+  feedDate: string;
   parkLocation: string;
   isRepetitive: boolean;
   participantName: string;

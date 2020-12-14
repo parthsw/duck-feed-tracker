@@ -21,6 +21,6 @@ const duckFeedSchema = require('src/helpers/validate/duckFeedSchema');
 router
   .route(`/feed`)
   .get(duckFeedController.getDuckFeeds)
-  .post(validate(duckFeedSchema.createDuckFeed), duckFeedController.createDuckFeed);
+  .post(duckFeedController.createDuckFeed);
 
 module.exports = router;

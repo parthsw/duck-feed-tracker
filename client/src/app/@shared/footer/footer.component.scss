@@ -1,0 +1,19 @@
+@import "base/typography";
+@import "base/variables";
+@import "base/colors";
+
+:host {
+  width: 100%;
+  bottom: 0;
+}
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: $app-footer-background;
+  color: $black;
+  font-family: $font-roboto-regular;
+  font-weight: 900;
+  height: $footer-height;
+  font-size: 0.8em;
+}

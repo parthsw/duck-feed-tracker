@@ -1,0 +1,17 @@
+@import "abstract/placeholders";
+
+:host {
+  width: 100%;
+}
+section,
+picture {
+  @extend %vertically-center-orientation;
+}
+img,
+h5 {
+  width: 50%;
+  height: 50%;
+}
+h5 {
+  text-align: center;
+}

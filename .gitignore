@@ -62,3 +62,5 @@ xcuserdata/
 sqltools_**.log
 
 server/src/.env
+
+client/output/**

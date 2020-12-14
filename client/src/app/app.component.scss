@@ -1,12 +1,22 @@
 @import "base/variables";
+@import "base/typography";
+@import "base/colors";
+@import "abstract/placeholders";
 
 :host {
-  display: flex;
-  flex-direction: column;
+  @extend %vertically-center-orientation;
+
   min-height: 100vh;
 }
 main {
-  padding: 0 16px;
   flex: 1 0 auto;
+  text-align: center;
+  padding: 1em;
+  width: 100%;
   margin-top: $header-height;
+  background-color: $app-background-color;
+  font-family: $font-roboto-regular;
+}
+app-footer {
+  flex-shrink: 0;
 }
