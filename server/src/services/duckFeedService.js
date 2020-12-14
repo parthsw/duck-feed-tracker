@@ -3,7 +3,7 @@
 
 const mysql = require('mysql');
 const config = require('src/config/index');
-
+const duckFeedFormatter = require('src/helpers/formatters/duckFeedFormatter');
 class DuckFeedService {
   getAllDuckFeeds = `SELECT 
     A.id,
@@ -18,6 +18,8 @@ class DuckFeedService {
     ((${config.database.name}.duck_feed_dataset AS A INNER JOIN ${config.database.name}.country as B ON A.country_id = B.id) 
       INNER JOIN 
       ${config.database.name}.duck_food as C ON A.food_type_id = C.id);`;
+
+  regularScheduleDuckFeeds = `SELECT * FROM ${config.database.name}.duck_feed_dataset WHERE is_repetitive = 1`;
 
   duckFeed = `INSERT 
     INTO 
@@ -43,13 +45,36 @@ class DuckFeedService {
     console.log(`Fetching list of all duck feeding dataset...`);
     try {
       let duckFeeds = await this.database.query(this.getAllDuckFeeds);
+      let formattedDuckFeeds = duckFeedFormatter.formatDuckFeeds(duckFeeds);
+      console.log(`Returning ${formattedDuckFeeds.length} records...`);
       return {
         success: true,
         statusCode: 200,
-        items: duckFeeds,
+        items: formattedDuckFeeds,
       };
     } catch (error) {
       console.log(`Error fetching list of all duck feeding dataset... - ${error}`);
+      return {
+        success: false,
+        statusCode: 500,
+        error,
+      };
+    }
+  }
+
+  async getRegularScheduleDuckFeeds() {
+    console.log(`Fetching list of duck feeding dataset having regular schedule turned on...`);
+    try {
+      let regularScheduleDuckFeeds = await this.database.query(this.regularScheduleDuckFeeds);
+      let formattedRegularScheduleDuckFeeds = duckFeedFormatter.formatDuckFeeds(regularScheduleDuckFeeds);
+      console.log(`Returning ${formattedRegularScheduleDuckFeeds.length} records...`);
+      return {
+        success: true,
+        statusCode: 200,
+        items: formattedRegularScheduleDuckFeeds,
+      };
+    } catch (error) {
+      console.log(`Fetching list of duck feeding dataset having regular schedule turned on... - ${error}`);
       return {
         success: false,
         statusCode: 500,
@@ -75,6 +100,7 @@ class DuckFeedService {
     console.log(`Creating a duck feed entry...`);
     try {
       let result = await this.database.query(createDuckFeedQuery);
+      console.log(`Created a duck feed entry...`);
       return {
         success: true,
         statusCode: 200,

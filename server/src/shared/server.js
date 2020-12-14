@@ -4,6 +4,8 @@ const cors = require('cors');
 
 const { ValidationError } = require('express-validation');
 
+require('src/jobs/regularFeedScheduler');
+
 const countryRoutes = require('src/routes/countryRoutes');
 const foodRoutes = require('src/routes/foodRoutes');
 const duckFeedRoutes = require('src/routes/duckFeedRoutes');
